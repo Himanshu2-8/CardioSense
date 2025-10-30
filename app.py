@@ -7,7 +7,7 @@ import base64
 # PAGE CONFIG
 # ===============================
 st.set_page_config(
-    page_title="CardioSense ❤️",
+    page_title="CardioSense",
     page_icon="❤️",
     layout="centered",
 )
