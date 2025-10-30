@@ -3,23 +3,16 @@ import numpy as np
 import joblib
 import base64
 
-# ===============================
-# PAGE CONFIG
-# ===============================
 st.set_page_config(
     page_title="CardioSense",
     page_icon="❤️",
     layout="centered",
 )
 
-# ===============================
-# LOAD AND ENCODE BACKGROUND IMAGE
-# ===============================
 def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# Encode the background image
 try:
     bg_image = get_base64_image("assets/image.jpg")
     bg_style = f'background-image: url("data:image/jpeg;base64,{bg_image}");'
@@ -27,9 +20,6 @@ except FileNotFoundError:
     # Fallback gradient if image not found
     bg_style = 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);'
 
-# ===============================
-# CUSTOM CSS (Gradient Background + Glassmorphic Card)
-# ===============================
 st.markdown(f"""
 <style>
 /* Background */
@@ -41,18 +31,15 @@ st.markdown(f"""
     font-family: 'Poppins', sans-serif;
 }}
 
-/* Hide Streamlit header */
 [data-testid="stHeader"] {{
     background: transparent;
     display: none;
 }}
 
-/* Hide top padding */
 .block-container {{
     padding-top: 2rem;
 }}
 
-/* Glass effect card */
 .main-card {{
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
@@ -63,7 +50,6 @@ st.markdown(f"""
     margin: 3rem auto;
 }}
 
-/* Titles */
 h1 {{
     text-align: center;
     color: #ffffff;
@@ -73,13 +59,11 @@ h3 {{
     color: #f1f1f1;
 }}
 
-/* Labels and text */
 label, .stSelectbox label, .stNumberInput label {{
     color: #f0f0f0 !important;
     font-weight: 500;
 }}
 
-/* Button styling */
 .stButton button {{
     background: linear-gradient(135deg, #ff4b2b, #ff416c);
     color: white;
@@ -95,7 +79,6 @@ label, .stSelectbox label, .stNumberInput label {{
     transform: scale(1.03);
 }}
 
-/* Result messages */
 .success, .error {{
     text-align: center;
     font-size: 1.2rem;
@@ -107,14 +90,8 @@ label, .stSelectbox label, .stNumberInput label {{
 </style>
 """, unsafe_allow_html=True)
 
-# ===============================
-# LOAD MODEL
-# ===============================
 model = joblib.load("adaboost_model.pkl")
 
-# ===============================
-# PAGE CONTENT
-# ===============================
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 
 st.title("❤️ CardioSense")
